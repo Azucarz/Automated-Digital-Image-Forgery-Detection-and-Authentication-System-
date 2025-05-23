@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deepfake Scanner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ----- Futuristic Theme Embedded CSS ----- */
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #0a0f1a, #111b30);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #00f7ff;
+            text-shadow: 0 0 12px #00f7ff;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .upload-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 12px 18px;
+            background: #00d4ff;
+            color: #0a0f1a;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .custom-file-upload:hover {
+            background: #00b3cc;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        #fileName {
+            display: block;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .scan-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 25px;
+            background: #00ff9d;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.6);
+        }
+
+        .scan-button:hover {
+            background: #00cc7a;
+            box-shadow: 0 0 25px rgba(0, 255, 157, 0.9);
+        }
+
+        /* Optional - Animate button a bit */
+        .scan-button:active {
+            transform: scale(0.95);
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h1 class="title">🔍 AI-Powered Deepfake Scanner</h1>
+    <p class="subtitle">Upload an image and let AI determine if it's real or AI-generated.</p>
+
+    <div class="upload-box">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file" accept=".png, .jpg, .jpeg" required>
+            <label for="fileInput" class="custom-file-upload">📁 Choose File</label>
+            <span id="fileName">No file selected</span>
+            <button type="submit" class="scan-button">🚀 Analyze</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById("fileInput").addEventListener("change", function() {
+        var fileName = this.files[0] ? this.files[0].name : "No file selected";
+        document.getElementById("fileName").textContent = fileName;
+    });
+</script>
+
+</body>
+</html>
